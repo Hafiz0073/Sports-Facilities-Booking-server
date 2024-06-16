@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { UserServices } from "./user.service";
 
 //create admin
-const createAdmin = async (req: Request, res: Response) => {
+const createAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserServices.createAminIntoDB(req.body);
     res.status(200).json({
@@ -11,11 +11,7 @@ const createAdmin = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: unknown) {
-    res.status(200).json({
-      success: false,
-      message: "something went wrong",
-      error: error,
-    });
+    next(error);
   }
 };
 //update User

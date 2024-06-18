@@ -1,11 +1,11 @@
-import { Request, RequestHandler, Response } from "express";
+import { Request, Response } from "express";
 import { UserServices } from "./user.service";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 
 //create admin
-const createAdmin = catchAsync(async (req, res, next) => {
+const createAdmin = catchAsync(async (req, res) => {
   const result = await UserServices.createAminIntoDB(req.body);
   // res.status(200).json({
   //   success: true,

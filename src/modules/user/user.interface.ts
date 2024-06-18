@@ -10,3 +10,8 @@ export type TUser = {
   status: keyof typeof USER_Status;
   passwordChangedAt: Date;
 };
+
+export type TLoginUser = {
+  email: string;
+  password: string;
+};

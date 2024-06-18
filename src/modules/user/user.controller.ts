@@ -1,10 +1,10 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { UserServices } from "./user.service";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
 
 //create admin
-const createAdmin = async (req: Request, res: Response, next: NextFunction) => {
+const createAdmin: RequestHandler = async (req, res, next) => {
   try {
     const result = await UserServices.createAminIntoDB(req.body);
     // res.status(200).json({

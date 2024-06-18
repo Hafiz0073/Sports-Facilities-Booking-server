@@ -4,12 +4,13 @@ import express, { Request, Response } from "express";
 import globalErrorHandler from "./middlewares/globalErrorHandler";
 import notFound from "./middlewares/notFound";
 import router from "./routes";
+import { UserAuthRoutes } from "./modules/auth/auth.routes";
 const app = express();
 
 //persers
 app.use(express.json());
 //user create route
-// app.use("/api", UserRoutes);
+// app.use("/api/auth", UserAuthRoutes);
 app.use("/api", router);
 app.use((req, res, next) => {
   console.log(`Request URL: ${req.url}`);
@@ -23,7 +24,7 @@ const test = (req: Request, res: Response) => {
 
 app.get("/", test);
 //globalerrorhandler
-app.use(globalErrorHandler);
+// app.use(globalErrorHandler);
 //not found
 app.use(notFound);
 export default app;

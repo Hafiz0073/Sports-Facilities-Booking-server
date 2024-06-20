@@ -12,7 +12,7 @@ const register = async (payload: TUser): Promise<any> => {
     throw new Error("User Already exist");
   }
   //set user role
-  payload.role = USER_Role.USER;
+  payload.role = USER_Role.ADMIN || USER_Role.USER;
   //create user
   const newUser = await User.create(payload);
   return newUser;
@@ -41,7 +41,7 @@ const login = async (payload: TLoginUser) => {
     role: user.role,
   };
   const accessToken = jwt.sign(jwtpayload, config.jwt_access_secret as string, {
-    expiresIn: "1d",
+    expiresIn: config.jwt_access_expires_in as string,
   });
   const refreshToken = jwt.sign(
     jwtpayload,

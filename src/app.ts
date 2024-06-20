@@ -4,7 +4,6 @@ import express, { Request, Response } from "express";
 import globalErrorHandler from "./middlewares/globalErrorHandler";
 import notFound from "./middlewares/notFound";
 import router from "./routes";
-import { UserAuthRoutes } from "./modules/auth/auth.routes";
 const app = express();
 
 //persers
@@ -24,7 +23,7 @@ const test = (req: Request, res: Response) => {
 
 app.get("/", test);
 //globalerrorhandler
-// app.use(globalErrorHandler);
+app.use(globalErrorHandler);
 //not found
 app.use(notFound);
 export default app;

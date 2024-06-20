@@ -7,11 +7,7 @@ import catchAsync from "../../utils/catchAsync";
 //create admin
 const createAdmin = catchAsync(async (req, res) => {
   const result = await UserServices.createAminIntoDB(req.body);
-  // res.status(200).json({
-  //   success: true,
-  //   message: "User created successfully",
-  //   data: result,
-  // });
+
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

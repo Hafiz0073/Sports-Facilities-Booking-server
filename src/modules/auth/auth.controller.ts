@@ -24,7 +24,7 @@ const login = catchAsync(async (req, res) => {
     statusCode: httpStatus.OK,
     success: true,
     message: "Register login successfully",
-    data: { accessToken, refreshToken },
+    data: { accessToken },
   });
 });
 export const UserControllerAuth = {

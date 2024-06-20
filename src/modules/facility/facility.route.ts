@@ -14,11 +14,26 @@ router.post(
   auth(USER_Role.ADMIN),
   FacilitiesController.createFacility
 );
+router.put(
+  "/facility/:facilityId",
+  validateRequest(SportsFacilityValidations.updateFacilityValidationSchema),
+  FacilitiesController.updateFacility
+);
 //get all facilities
 router.get(
   "/facility",
   auth(USER_Role.ADMIN || USER_Role.USER),
   FacilitiesController.getAllFacilities
+);
+router.get(
+  "/facility/:facilityId",
+
+  FacilitiesController.getSingleFacility
+);
+router.delete(
+  "/facility/:facilityId",
+
+  FacilitiesController.deleteFacility
 );
 
 export const FacilityRoutes = router;

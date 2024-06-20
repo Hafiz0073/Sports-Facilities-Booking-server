@@ -10,7 +10,7 @@ const createFacility = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Facility created successfully",
+    message: "Facility added successfully",
     data: result,
   });
 });
@@ -20,30 +20,52 @@ const getAllFacilities = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "all facilities get successfully",
+    message: "Facilities retrieved successfully",
     data: result,
   });
 });
-//update User
-// const updateUser = async (req: Request, res: Response) => {
-//   try {
-//     const { userId } = req.params;
-//     const result = await UserServices.updateUser(userId, req.body);
-//     res.status(200).json({
-//       success: true,
-//       message: "User created successfully",
-//       data: result,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: "something went wrong",
-//       error: error,
-//     });
-//   }
-// };
+//single id
+const getSingleFacility = catchAsync(async (req, res) => {
+  const { facilityId } = req.params;
+  const result = await SportsFacility.getSingleFacilityFromDB(facilityId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "specific Academic department got successfully",
+    data: result,
+  });
+});
+//update facility
+const updateFacility = catchAsync(async (req, res) => {
+  const { facilityId } = req.params;
+  const result = await SportsFacility.updateFacilityIntoDB(
+    facilityId,
+    req.body
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Facility updated successfully",
 
+    data: result,
+  });
+});
+//deleted facility
+const deleteFacility = catchAsync(async (req, res) => {
+  const { facilityId } = req.params;
+  const result = await SportsFacility.deleteFacilityFromDB(facilityId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Facility deleted successfully",
+    data: result,
+  });
+});
 export const FacilitiesController = {
   createFacility,
+  updateFacility,
   getAllFacilities,
+  getSingleFacility,
+  deleteFacility,
 };

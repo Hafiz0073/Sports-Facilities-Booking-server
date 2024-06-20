@@ -14,6 +14,16 @@ const createFacility = catchAsync(async (req, res) => {
     data: result,
   });
 });
+//get all facilities
+const getAllFacilities = catchAsync(async (req, res) => {
+  const result = await SportsFacility.getAllFacilitiesFromDb();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "all facilities get successfully",
+    data: result,
+  });
+});
 //update User
 // const updateUser = async (req: Request, res: Response) => {
 //   try {
@@ -35,4 +45,5 @@ const createFacility = catchAsync(async (req, res) => {
 
 export const FacilitiesController = {
   createFacility,
+  getAllFacilities,
 };
